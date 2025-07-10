@@ -1,10 +1,17 @@
 from fastapi import FastAPI, status
+from fastapi.middleware.cors import CORSMiddleware
 
 from models import Question, Answer
 from schemas import CreateQuestionRequest
 
 
 app = FastAPI()
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_methods=["*"],
+)
 
 questions: list[Question] = [
     Question(
